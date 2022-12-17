@@ -49,6 +49,9 @@
 				filter: none;
 				-webkit-filter: none;
             }
+			#previewImg{
+				display: none;
+			}
         </style>
     </head>
     <body id="top">
@@ -79,7 +82,7 @@
         </header>
         <div class="page-content">
         <div class="container">
-        <div class="cover shadow bg-white">
+        <div id="html-content-holder" class="cover shadow bg-white">
             <div class="cover-bg p-3 p-lg-4 text-white">
 				<div class="cover-bg-inner"></div>
                 <div class="row">
@@ -90,7 +93,7 @@
                         <h2 class="h1 mt-2" data-aos="fade-left" data-aos-delay="0">Shoaib Khan</h2>
                         <p data-aos="fade-left" data-aos-delay="100">Self Taught Developer & Full Stack Engineer</p>
                         <div class="d-print-none" data-aos="fade-left" data-aos-delay="200">
-                          <!-- <a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="right-resume.pdf" target="_blank">Download CV</a> -->
+                          <a class="btn btn-light text-dark shadow-sm mt-1 me-1" href="javascript:void(0)" id="downloadCV">Download CV</a>
                           <a class="btn btn-success shadow-sm mt-1" target="_blank" href="https://wa.me/919589988584?text=Hello Shoaib khan, I loved your profile and i want to discuss about my project with you. So please tell me your availability to have a discussion.">Hire Me</a>
                         </div>
                     </div>
@@ -522,9 +525,12 @@
                 </div>
             </div>
         </footer>
+		<div id="previewImg"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js?ver=3.6.2"></script>
         <script src="scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js?ver=2.3.4"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.esm.min.js"></script>
         <script src="scripts/aos.js?ver=1.2.0"></script>
         <script src="scripts/main.js?ver=1.2.0"></script>
         <script>
@@ -547,6 +553,44 @@
                 }
               }
               })
+
+				var getCanvas;
+			  $(document).ready(function() {
+				html2canvas(document.getElementById("html-content-holder"), {
+					allowTaint: true,
+					useCORS: true,
+					onrendered: function (canvas) {
+						getCanvas = canvas;
+					}
+				});
+				html2canvas(document.getElementById("html-content-holder"),		{
+					allowTaint: true,
+					useCORS: true
+				}).then(function (canvas) {
+					$("#downloadCV").on('click', function () {
+						var anchorTag = document.createElement("a");
+						document.body.appendChild(anchorTag);
+						document.getElementById("previewImg").appendChild(canvas);
+						anchorTag.download = "Shoaib-khan(spydey)-CV_Portfolio.png";
+						anchorTag.href = canvas.toDataURL();
+						anchorTag.target = '_blank';
+						anchorTag.click();
+					});
+				});
+				
+			  });
+			//   $("#downloadCV").on('click', function () {
+			// 		var imgageData = getCanvas.toDataURL("image/png");
+			// 		// Now browser starts downloading it instead of just showing it
+			// 		var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+			// 		var anchorTag = document.createElement("a");
+			// 		document.body.appendChild(anchorTag);
+			// 		document.getElementById("previewImg").appendChild(getCanvas);
+			// 		anchorTag.download = "Shoaib-khan(spydey)-CV_Portfolio.png";
+			// 		anchorTag.href = getCanvas.toDataURL();
+			// 		anchorTag.target = '_blank';
+			// 		anchorTag.click();
+			// 	});
         </script>
     </body>
 </html>
