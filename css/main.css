@@ -95,7 +95,15 @@ html {
 
 .avatar img {
   /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%); }
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  transition: 500ms ease-in;
+ }
+    .avatar:hover img {
+      /* Safari 6.0 - 9.0 */
+      filter: none;
+      -webkit-filter: none;
+    }
 
 footer a:not(.nav-link) {
   color: inherit;
@@ -138,3 +146,10 @@ footer a:not(.nav-link) {
   .page-break {
     padding-top: 5rem;
     page-break-before: always; } }
+
+  .fs-sm {
+    font-size: 0.875rem !important;
+  }
+    .fs-xs {
+      font-size: 0.75rem !important;
+    }
