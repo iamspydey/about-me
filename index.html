@@ -32,16 +32,20 @@
             .owl-nav, .owl-dots{
             display: none !important; 
             }
-            .technology-container {
+            .technology-container, .expertise-container {
             padding: 15px 0;
             }
-            .technology-container img {
+            .technology-container img, .expertise-container img {
             filter: grayscale(100);
             -webkit-filter: grayscale(100);
             cursor: pointer;
             transition: 350ms ease-in-out;
             }
-            .technology-container img:hover {
+            .technology-container .item:hover img {
+            filter: none;
+            -webkit-filter: none;
+            } 
+			.expertise-container .card:hover img {
             filter: none;
             -webkit-filter: none;
             }
@@ -196,7 +200,7 @@
 			<hr class="d-print-none mt-1"/>
             <div class="skills-section ">
                 <h2 class="h3 mb-2 px-3 px-lg-4">My Expertise</h2>
-                <div class="technology-container">
+                <div class="expertise-container">
                     <div class="px-3 px-lg-4">
 						<div class="row">
 							<div class="col-sm-6 col-lg-4">
